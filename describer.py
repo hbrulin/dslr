@@ -29,4 +29,13 @@ class DataDescriber(pd.DataFrame):
     def mean(self, feature: str) -> float:
         return sum(self[feature].dropna()) / self.count(feature)
     
-    #def std
+    #Tbdone
+    def std(self, feature: str) -> float:
+        return 0
+
+    def min(self, feature: str) -> float:
+        tmp = 0
+        for nb in self[feature].dropna():
+            if nb < tmp:
+                tmp = nb
+        return tmp

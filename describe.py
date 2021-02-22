@@ -3,14 +3,13 @@ import sys
 from describer import DataDescriber
     
 def print_table(data):
-    rows = ["---", "Count", "Mean", "Std", "Min", "25%", "50%", "75%", "Max"]
-    for row in rows:
-        print(f'{row:>10}')
+    print("")
+    print(f'{"":15} {"Count":>12} {"Mean":>15} {"Std":>12} {"Min":>12}'
+          f'{"Max":>12} {"25%":>12} {"50%":>12} {"75%":>12}')
+    print("")
     for feature in data.columns:
         if data.is_numeric(feature) :
-            print(f'{data.get_acronym(feature):>10}')
-            print(f'{data.count(feature):>10}')
-            print(f'{data.mean(feature):>10.6f}')
+            print(f'{data.get_acronym(feature):>15} {data.count(feature):>11} {data.mean(feature):>17.6f} {data.std(feature):>15.6f} {data.min(feature):>17.6f}')
 
 def main():
     if (len(sys.argv) == 1) :
