@@ -39,3 +39,10 @@ class DataDescriber(pd.DataFrame):
             if nb < tmp:
                 tmp = nb
         return tmp
+
+    def max(self, feature: str) -> float:
+        tmp = 0
+        for nb in self[feature].dropna():
+            if nb > tmp:
+                tmp = nb
+        return tmp
