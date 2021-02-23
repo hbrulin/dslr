@@ -9,6 +9,9 @@ https://www.statisticshowto.com/probability-and-statistics/percentiles-rank-rang
 https://matplotlib.org/3.1.0/gallery/subplots_axes_and_figures/subplots_demo.html
 
 
+#python
+https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal
+
 
 
 Bonuses:
