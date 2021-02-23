@@ -80,13 +80,9 @@ def main():
         if data.is_numeric(feature) and feature != "Index":
             courses.append(feature)
 
-    #faire un histogramme par cours selon les maisons
     courses_hist(data, courses)
     plt.clf()
     most_homogenous(data, courses)
-
-
-
 
 if __name__ == "__main__":
     main()
