@@ -6,6 +6,7 @@ import random
 
 utils = VUtils
 
+                
 
 
 def courses_scatter(data, courses, fig):
@@ -29,12 +30,15 @@ def main():
     courses = utils.get_courses(data)
 
     fig = plt.figure(figsize=(12,7.5))
-
     courses_scatter(data, courses, fig)
     plt.clf()
     
     #later to compare two courses
-    #input = utils.get_input_courses(courses)
+    print('\33[32m' + "Scatter plot complete." + '\33[0m')
+    answer = input('\33[32m' + "Y to compare two courses : " + '\33[0m')
+    input_c = utils.get_input_courses(courses) if answer == "Y" else null
+    if input_c:
+        courses_scatter(data, input_c, fig)
 
 if __name__ == "__main__":
     main()

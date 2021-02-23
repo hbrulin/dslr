@@ -45,7 +45,7 @@ def most_homogenous(data, courses):
         elif smallest_diff[1] > houses_diff:
             smallest_diff = [course, houses_diff]
     print('\33[32m' + "%s is the most homogenous course!" %smallest_diff[0] + '\33[0m')
-    answer = input('\33[32m' + "Y/n to see its histogram : " + '\33[0m')
+    answer = input('\33[32m' + "Y to see its histogram : " + '\33[0m')
     if answer == "Y":
         show_most_homogenous(data, smallest_diff[0])
 
