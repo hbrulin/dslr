@@ -16,3 +16,4 @@ https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-term
 
 Bonuses:
 #compute most homogenous
+#compare two courses in scatter_plot
