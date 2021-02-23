@@ -3,6 +3,10 @@ import numpy as np
 import sys
 
 class DataDescriber(pd.DataFrame):
+
+    houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff']
+    colors = ['red', 'green', 'blue', 'yellow']
+
     def get_data(filename: str):
         try:
             data = pd.read_csv(filename)
