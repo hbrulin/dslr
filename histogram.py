@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import sys
+import math
+import numpy as np
 from analysis.describer import DataDescriber
 
 #Quel cours de Poudlard a une répartition des notes homogènes entre les quatres maisons ?
@@ -12,11 +14,15 @@ def course_sub(ax, data, course):
 
 
 def courses_hist(data, courses):
-    fig, axs = plt.subplots(len(courses))
+    k = len(courses)
+    nrows = math.ceil(k/3)
+    ncols = 3
+    fig = plt.figure()
+    #fig, axs = plt.subplots(math.ceil(k/3), 3, sharex=True, sharey=True)
     fig.suptitle('Courses subplots')
-    #The enumerate() function assigns an index to each item in an iterable object that can be used to reference the item later.
-    for i, course in enumerate(courses):
-        course_sub(axs[i], data, course)
+    for i, course in enumerate(courses, start=1):
+        ax = fig.add_subplot(nrows, ncols, i)
+        course_sub(ax, data, course)
     plt.show()
 
 
