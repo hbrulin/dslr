@@ -8,7 +8,7 @@ from scatter_plot import courses_scatter
 utils = VUtils
 
 def pair_plot(data, courses):
-    fig, axs = plt.subplots(13, 13, figsize=(12,7.5), tight_layout=True)
+    fig, axs = plt.subplots(13, 13, figsize=(15,8), tight_layout=True)
     for row_course, ax in zip(courses, axs):
         for col_course, ax_col in zip(courses, ax):
             if row_course == col_course:
@@ -17,6 +17,12 @@ def pair_plot(data, courses):
                 courses_scatter(data, [row_course, col_course], ax_col)
             ax_col.set_xticks([])
             ax_col.set_yticks([])
+            if ax_col.is_last_row():
+                ax_col.set_xlabel(data.get_acronym(col_course))
+            if ax_col.is_first_col():
+                label = data.get_acronym(row_course) if len(data.get_acronym(row_course)) < 6 else row_course[:6]
+                ax_col.set_ylabel(label)
+    plt.subplots_adjust(hspace=1, wspace=1)
     plt.show()
 
 def main():
