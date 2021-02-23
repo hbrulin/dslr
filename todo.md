@@ -1,6 +1,6 @@
 #todo
 
 #describe
-- understand percentiles
+- understand percentiles algo better
 - better display
 - implémenter plus de champs pour describe
