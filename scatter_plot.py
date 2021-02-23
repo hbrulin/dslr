@@ -2,8 +2,22 @@ import matplotlib.pyplot as plt
 import sys
 from analysis.describer import DataDescriber
 from analysis.vis_utils import VUtils
+import random
 
 utils = VUtils
+
+
+
+def courses_scatter(data, courses, fig):
+    for pos, course in enumerate(courses):
+        grades = data[course].dropna()
+        grades = (grades.astype(float) - data.min(course)) / (data.max(course) - data.min(course)) #scale between 0 and 1
+        X = [pos] * len(grades) #because x and y must be the same size for scatter
+        plt.scatter(X, grades)
+    plt.ylabel("Grades")
+    plt.xticks(list(range(0, len(courses))), labels = courses)
+    fig.autofmt_xdate() #so that xticks don't overlap
+    plt.show()
 
 
 def main():
@@ -14,8 +28,10 @@ def main():
     
     courses = utils.get_courses(data)
 
-    #courses_scatters(data, courses)
-    #plt.clf()
+    fig = plt.figure(figsize=(12,7.5))
+
+    courses_scatter(data, courses, fig)
+    plt.clf()
     
     #later to compare two courses
     #input = utils.get_input_courses(courses)

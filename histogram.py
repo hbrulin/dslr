@@ -64,7 +64,7 @@ def courses_hist(data, courses):
     ncols = 3
     fig = plt.figure(figsize=(12,7.5))
     plt.subplots_adjust(top=None, bottom=None, left=None, right=None, hspace=1.5, wspace=1)
-    fig.suptitle('Courses subplots')
+    fig.suptitle('Courses house homogeneity')
     for i, course in enumerate(courses, start=1):
         ax = fig.add_subplot(nrows, ncols, i)
         ax.set(xlabel="Grades", ylabel="Students")
