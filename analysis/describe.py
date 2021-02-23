@@ -9,11 +9,15 @@ def print_table(data):
     print("")
     for feature in data.columns:
         if data.is_numeric(feature) :
-            print(f'{data.get_acronym(feature):>15} {data.count(feature):>11} {data.mean(feature):>15.4f} {data.std(feature):>11.4f} {data.min(feature):>13.4f} {data.max(feature):>12.4f}')
+            print(f'{data.get_acronym(feature):>15} {data.count(feature):>11} {data.mean(feature):>15.4f}'
+                f'{data.std(feature):>11.4f} {data.min(feature):>13.4f} {data.max(feature):>12.4f}'
+                f'{data.quantile(feature, 25):>12.4f} {data.quantile(feature, 50):>12.4f} {data.quantile(feature,75):>12.4f}')
+
 
 def main():
     if (len(sys.argv) == 1) :
-        sys.exit("Error: No input dataset")
+        print('\33[31m' +"Error: No input file." + '\33[0m')
+        sys.exit()
     data = DataDescriber.get_data(sys.argv[1])
     print_table(data)
 

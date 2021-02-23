@@ -7,7 +7,8 @@ class DataDescriber(pd.DataFrame):
         try:
             data = pd.read_csv(filename)
         except :
-            sys.exit("Error: File does not exist or has wrong format")
+            print('\33[31m' +"Error: File does not exist or has wrong format" + '\33[0m')
+            sys.exit()
         return DataDescriber(data)
 
     def get_acronym(self, name: str):
@@ -52,3 +53,20 @@ class DataDescriber(pd.DataFrame):
             if nb > tmp:
                 tmp = nb
         return tmp
+    
+    #quantile: x% of data is below the returned value
+    def quantile(self, feature: str, percent: float) -> float:
+        arr = sorted(self[feature].dropna())
+        #calculate what rank is at percentile
+        rank = (len(arr) - 1) * percent / 100
+
+        #get floor : The floor of the scalar rank is the largest integer f, such that f <= x
+        f = np.floor(rank)
+        #get ceil : The ceil of the scalar x is the smallest integer i, such that i >= x.
+        c = np.ceil(rank)
+        #if same number, the rank corresponds to an existing value
+        if f == c:
+            return arr[int(rank)]
+        d0 = arr[int(f)] * (c - rank)
+        d1 = arr[int(c)] * (rank - f)
+        return d0 + d1
