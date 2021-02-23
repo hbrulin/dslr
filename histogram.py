@@ -52,7 +52,6 @@ def most_homogenous(data, courses):
 
 ####See all histograms####
 def course_sub(ax, data, course):
-    ax.set_title(course)
     for house, color in zip(data.houses, data.colors):
         grades = data[course][data['Hogwarts House'] == house].dropna()
         ax.hist(grades, color=color, alpha = 0.4) #alpha for transparency
@@ -68,6 +67,7 @@ def courses_hist(data, courses):
     for i, course in enumerate(courses, start=1):
         ax = fig.add_subplot(nrows, ncols, i)
         ax.set(xlabel="Grades", ylabel="Students")
+        ax.set_title(course)
         course_sub(ax, data, course)
     fig.legend(data.houses, loc="lower center",  borderaxespad=0.15)
     plt.show()
