@@ -11,10 +11,7 @@ class Utils:
         return courses
 
     def show_plot(args):
-        return True if (len(args) > 2 and args[2] or args[3] == "--plot") else False
-
-    def opti(args):
-        return True if (len(args) > 2 and args[2] or args[3] == "--opti") else False
+        return True if (len(args) > 2 and args[2] == "--plot") else False
 
     def get_max(data) -> float:
         tmp = 0
@@ -25,7 +22,7 @@ class Utils:
 
     def scale(to_scale) :
         return (to_scale.astype(float) - Utils.get_min(to_scale)) / (Utils.get_max(to_scale) - Utils.get_min(to_scale))
-
+        
     def get_min(data) -> float:
         tmp = 0
         for nb in data:

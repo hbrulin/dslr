@@ -11,7 +11,12 @@
 
 #visualization
 - add legends to scatter plot
-- why is aranthmancy considered heterogenous
+- why is aranthmancy considered heterogenous : see if error is minimized when --opti
+
+
+#train
+- possibility to input your own courses based on visu
+- do accuracy function to select better courses
 
 
 À partir de cette visualisation, quelles caractéristiques allez-vous utiliser pour entraîner votre prochaine régression logistique ?

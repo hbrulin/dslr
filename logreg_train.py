@@ -34,11 +34,11 @@ def main():
         print('\33[31m' +"Error: No input file." + '\33[0m')
         sys.exit()
     show_plot = Utils.show_plot(sys.argv)
-    opti = Utils.opto(sys.argv)
     
     data = DataDescriber.get_data(sys.argv[1])
     courses = Utils.get_courses(data)
-    if opti == True:
+    answer = input('\33[32m' + "Y to train with non homogenous courses : " + '\33[0m')
+    if answer == "Y":
         courses = top_least_homogenous(data, courses) #not mandatory
 
     #init_train(data, courses)
