@@ -13,6 +13,20 @@ class Utils:
     def show_plot(args):
         return True if (len(args) > 2 and args[2] == "--plot") else False
 
+    def get_max(data) -> float:
+        tmp = 0
+        for nb in data:
+            if nb > tmp:
+                tmp = nb
+        return tmp
+
+    def get_min(data) -> float:
+        tmp = 0
+        for nb in data:
+            if nb < tmp:
+                tmp = nb
+        return tmp
+
     #Visualisation
     def ask_for_course(courses, nb):
         check_course = False

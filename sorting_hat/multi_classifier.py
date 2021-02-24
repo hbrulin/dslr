@@ -21,7 +21,7 @@ class MultiClassifier:
     #input data?
     def train(data, X, Y, m):
         tmp_thetas = [0.0, 0.0, 0.0, 0.0] #better way to do this!
-        for i in data.houses
+        for i in data.houses:
             for _ in range(iterations):
                 new_theta = get_new_theta(thetas[i], X, Y, M)
                 tmp_thetas[i] = new_theta

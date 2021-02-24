@@ -3,13 +3,27 @@ import sys
 from analysis.describer import DataDescriber
 from utils.utils import Utils
 from sorting_hat.multi_classifier import MultiClassifier
+from histogram import get_houses_total_diff
 
+def top_least_homogenous(data, courses):
+    #smallest_diff = ["", 0.0]
+    for i, course in enumerate(courses):
+        houses_diff = get_houses_total_diff(data, course)
+        print("%s: %f" %(course, houses_diff))
+        """
+        if i == 0:
+            smallest_diff = [course, houses_diff]
+        elif smallest_diff[1] > houses_diff:
+            smallest_diff = [course, houses_diff]
+        """
+    ###change for biggest and set min heterogeneity
 
+"""
 
-def init_train(data):
+def init_train(data, relevant_courses):
 
     #get data
-    courses = utils.get_courses(data) #select non homogenous courses?
+     #select non homogenous courses?
     x = data[courses]
     y = 
     m = 
@@ -18,7 +32,7 @@ def init_train(data):
 
     #launch model computations
     model = MultiClassifier()
-
+"""
 
 def main():
     if (len(sys.argv) == 1) :
@@ -27,8 +41,10 @@ def main():
     show_plot = Utils.show_plot(sys.argv)
     
     data = DataDescriber.get_data(sys.argv[1])
+    courses = Utils.get_courses(data)
+    courses = top_least_homogenous(data, courses) #not mandatory
 
-    init_train(data)
+    #init_train(data, courses)
     #train()
 
     
