@@ -1,5 +1,9 @@
 #todo
 
+#general
+- requirements.txt
+- check potential bugs of arg options
+
 #describe
 - understand percentiles algo better
 - better display
@@ -7,7 +11,7 @@
 
 #visualization
 - add legends to scatter plot
-- my algo for most homogenous doesn't work
+- why is aranthmancy considered heterogenous
 
 
 À partir de cette visualisation, quelles caractéristiques allez-vous utiliser pour entraîner votre prochaine régression logistique ?

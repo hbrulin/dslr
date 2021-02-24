@@ -6,20 +6,15 @@ from sorting_hat.multi_classifier import MultiClassifier
 from histogram import get_houses_total_diff
 
 def top_least_homogenous(data, courses):
-    #smallest_diff = ["", 0.0]
+    diff_arr = []
     for i, course in enumerate(courses):
         houses_diff = get_houses_total_diff(data, course)
-        print("%s: %f" %(course, houses_diff))
-        """
-        if i == 0:
-            smallest_diff = [course, houses_diff]
-        elif smallest_diff[1] > houses_diff:
-            smallest_diff = [course, houses_diff]
-        """
-    ###change for biggest and set min heterogeneity
+        diff_arr.append([course, houses_diff])
+    least_homo = sorted(diff_arr[:6]) #get last six elements
+    #print(least_homo)
+    #if issue with accuracy, don't use this because of arithmancy
 
 """
-
 def init_train(data, relevant_courses):
 
     #get data
@@ -39,10 +34,12 @@ def main():
         print('\33[31m' +"Error: No input file." + '\33[0m')
         sys.exit()
     show_plot = Utils.show_plot(sys.argv)
+    opti = Utils.opto(sys.argv)
     
     data = DataDescriber.get_data(sys.argv[1])
     courses = Utils.get_courses(data)
-    courses = top_least_homogenous(data, courses) #not mandatory
+    if opti == True:
+        courses = top_least_homogenous(data, courses) #not mandatory
 
     #init_train(data, courses)
     #train()
