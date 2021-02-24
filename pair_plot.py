@@ -3,7 +3,7 @@ import sys
 from analysis.describer import DataDescriber
 from analysis.vis_utils import VUtils
 from histogram import course_sub
-from scatter_plot import courses_scatter
+from scatter_plot import courses_compare
 
 utils = VUtils
 
@@ -14,7 +14,7 @@ def pair_plot(data, courses):
             if row_course == col_course:
                 course_sub(ax_col, data, row_course)
             else:
-                courses_scatter(data, [row_course, col_course], ax_col)
+                courses_compare(data, [row_course, col_course], ax_col)
             ax_col.set_xticks([])
             ax_col.set_yticks([])
             if ax_col.is_last_row():

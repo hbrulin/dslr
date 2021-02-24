@@ -6,7 +6,13 @@ import random
 
 utils = VUtils
 
-def courses_scatter(data, courses, plot):
+def courses_compare(data, courses, plot):
+    for house, color in zip(data.houses, data.colors):
+        x = data[courses[0]][data['Hogwarts House'] == house]
+        y = data[courses[1]][data['Hogwarts House'] == house]
+        plot.scatter(x, y, color=color, alpha=0.3)
+
+def courses_scatter(data, courses, fig):
     for pos, course in enumerate(courses):
         for house, color in zip(data.houses, data.colors):
             grades = data[course][data['Hogwarts House'] == house].dropna()
@@ -14,9 +20,7 @@ def courses_scatter(data, courses, plot):
             if len(grades) >= 50:
                 grades = random.sample(list(grades), 50)
             X = [pos] * len(grades) #because x and y must be the same size for scatter
-            plot.scatter(X, grades, color=color, alpha=0.3)
-
-def show_plot(fig, courses):
+            plt.scatter(X, grades, color=color, alpha=0.3)
     plt.ylabel("Grades")
     plt.xticks(list(range(0, len(courses))), labels = courses)
     fig.autofmt_xdate() #so that xticks don't overlap
@@ -31,17 +35,18 @@ def main():
     courses = utils.get_courses(data)
     
     fig = plt.figure(figsize=(12,7.5))
-    courses_scatter(data, courses, plt)
-    show_plot(fig, courses)
+    courses_scatter(data, courses, fig)
     plt.clf()
     
-    #later to compare two courses
+    #Ask compare two courses
     print('\33[32m' + "Scatter plot complete." + '\33[0m')
     answer = input('\33[32m' + "Y to compare two courses : " + '\33[0m')
     input_c = utils.get_input_courses(courses) if answer == "Y" else ""
     if input_c != "":
-        courses_scatter(data, input_c, plt)
-        show_plot(fig, input_c)
+        courses_compare(data, input_c, plt)
+        plt.xlabel(input_c[0])
+        plt.ylabel(input_c[1])
+        plt.show()
    
 if __name__ == "__main__":
     main()
