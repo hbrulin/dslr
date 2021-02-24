@@ -7,7 +7,7 @@
 
 #visualization
 - add legends to scatter plot
-- my algo for most homogenous doesn't work
+- review algo most homogenous
 
 
 À partir de cette visualisation, quelles caractéristiques allez-vous utiliser pour entraîner votre prochaine régression logistique ?

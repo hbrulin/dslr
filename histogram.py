@@ -16,36 +16,32 @@ def show_most_homogenous(data, course):
     plt.show()
 
 """
-Algo:
+Algo: REVIEW!!!!!!!!!!!!!!!!
 Calculate, for each house, the std variation of its grade for a given course.
-Get the differences between each of these std variations with the total std variation for the course (all grades indifferent to houses).
+Get the differences between each of these std variations with the total std variation for the course (all grades indifferent to houses), multiply by a 100 and ivide by std_course.
 Add up those differences to get the combined difference of houses with regard to the std variation of the course.
 Pick the smallest combined difference to get homogenous house.
 """
-def get_houses_total_diff(data, course):
+def get_house_diff(data, course, house):
     std_course = data.std(course)
-    total_diff = 0
-    for house in data.houses:
-        grades = data[course][data['Hogwarts House'] == house].dropna()
-        mean = sum(grades) / len(grades)
-        variance = sum((grades - mean)**2) / (len(grades) - 1)
-        std_house = np.sqrt(variance)
-        house_diff_with_course = std_course - std_house
-        total_diff += house_diff_with_course
-    return total_diff
+    grades = data[course][data['Hogwarts House'] == house].dropna()
+    mean = sum(grades) / len(grades)
+    variance = sum((grades - mean)**2) / (len(grades) - 1)
+    std_house = np.sqrt(variance)
+    return std_course - std_house * 100 / std_course #ajout
         
 def most_homogenous(data, courses):
-    smallest_diff = ["", 0.0]
+    total_diff = []
     for i, course in enumerate(courses):
-        houses_diff = get_houses_total_diff(data, course)
-        if i == 0:
-            smallest_diff = [course, houses_diff]
-        elif smallest_diff[1] > houses_diff:
-            smallest_diff = [course, houses_diff]
-    print('\33[32m' + "%s is the most homogenous course!" %smallest_diff[0] + '\33[0m')
+        house_diff = 0
+        for house in data.houses:
+                house_diff += get_house_diff(data, course, house)
+        total_diff.append(house_diff)
+    winner = total_diff.index(Utils.get_min(total_diff))
+    print('\33[32m' + "%s is the most homogenous course!" %courses[winner] + '\33[0m')
     answer = input('\33[32m' + "Y to see its histogram : " + '\33[0m')
     if answer == "Y":
-        show_most_homogenous(data, smallest_diff[0])
+        show_most_homogenous(data, courses[winner])
 
 
 ####See all histograms####

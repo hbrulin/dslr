@@ -3,20 +3,18 @@ import sys
 from analysis.describer import DataDescriber
 from utils.utils import Utils
 from sorting_hat.multi_classifier import MultiClassifier
-from histogram import get_houses_total_diff
+from histogram import get_house_diff
 
 def top_least_homogenous(data, courses):
-    #smallest_diff = ["", 0.0]
+    total_diff = []
     for i, course in enumerate(courses):
-        houses_diff = get_houses_total_diff(data, course)
-        print("%s: %f" %(course, houses_diff))
-        """
-        if i == 0:
-            smallest_diff = [course, houses_diff]
-        elif smallest_diff[1] > houses_diff:
-            smallest_diff = [course, houses_diff]
-        """
-    ###change for biggest and set min heterogeneity
+        house_diff = 0
+        for house in data.houses:
+            house_diff += get_house_diff(data, course, house)
+        total_diff.append(house_diff)
+    print(courses)
+    print(total_diff)
+    
 
 """
 
