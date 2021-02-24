@@ -1,8 +1,8 @@
 import pandas as pd
 import sys
 
-class VUtils:
-
+class Utils:
+    #general
     def get_courses(data):
         courses = []
         for feature in data.columns:
@@ -10,6 +10,10 @@ class VUtils:
                 courses.append(feature)
         return courses
 
+    def show_plot(args):
+        return True if (len(args) > 2 and args[2] == "--plot") else False
+
+    #Visualisation
     def ask_for_course(courses, nb):
         check_course = False
         while check_course == False :

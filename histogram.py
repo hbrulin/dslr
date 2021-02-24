@@ -3,9 +3,7 @@ import sys
 import math
 import numpy as np
 from analysis.describer import DataDescriber
-from analysis.vis_utils import VUtils
-
-utils = VUtils
+from utils.utils import Utils
 
 #####Quel cours de Poudlard a une répartition des notes homogènes entre les quatres maisons ?####
 def show_most_homogenous(data, course):
@@ -78,7 +76,7 @@ def main():
         print('\33[31m' +"Error: No input file." + '\33[0m')
         sys.exit()
     data = DataDescriber.get_data(sys.argv[1])
-    courses = utils.get_courses(data)
+    courses = Utils.get_courses(data)
 
     courses_hist(data, courses)
     plt.clf()

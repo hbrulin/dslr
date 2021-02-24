@@ -1,10 +1,8 @@
 import matplotlib.pyplot as plt
 import sys
 from analysis.describer import DataDescriber
-from analysis.vis_utils import VUtils
+from utils.utils import Utils
 import random
-
-utils = VUtils
 
 def courses_compare(data, courses, plot):
     for house, color in zip(data.houses, data.colors):
@@ -32,7 +30,7 @@ def main():
         sys.exit()
     data = DataDescriber.get_data(sys.argv[1])
     
-    courses = utils.get_courses(data)
+    courses = Utils.get_courses(data)
     
     fig = plt.figure(figsize=(12,7.5))
     courses_scatter(data, courses, fig)
@@ -41,7 +39,7 @@ def main():
     #Ask compare two courses
     print('\33[32m' + "Scatter plot complete." + '\33[0m')
     answer = input('\33[32m' + "Y to compare two courses : " + '\33[0m')
-    input_c = utils.get_input_courses(courses) if answer == "Y" else ""
+    input_c = Utils.get_input_courses(courses) if answer == "Y" else ""
     if input_c != "":
         courses_compare(data, input_c, plt)
         plt.xlabel(input_c[0])

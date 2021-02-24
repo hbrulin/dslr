@@ -1,11 +1,9 @@
 import matplotlib.pyplot as plt
 import sys
 from analysis.describer import DataDescriber
-from analysis.vis_utils import VUtils
+from utils.utils import Utils
 from histogram import course_sub
 from scatter_plot import courses_compare
-
-utils = VUtils
 
 def pair_plot(data, courses):
     fig, axs = plt.subplots(13, 13, figsize=(15,8), tight_layout=True)
@@ -30,7 +28,7 @@ def main():
         print('\33[31m' +"Error: No input file." + '\33[0m')
         sys.exit()
     data = DataDescriber.get_data(sys.argv[1])
-    courses = utils.get_courses(data)
+    courses = Utils.get_courses(data)
     pair_plot(data, courses)
 
 if __name__ == "__main__":
