@@ -12,6 +12,7 @@
 #visualization
 - add legends to scatter plot
 - why is aranthmancy considered heterogenous : see if error is minimized when --opti
+- refactoriser histogram, refactoriser fonction qui itère sur house et color
 
 
 #train

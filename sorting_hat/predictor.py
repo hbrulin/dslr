@@ -6,7 +6,7 @@ class Predictor():
     #np.exp exponential from Euler nb
     
     def predict_Y(X, theta):
-        z = np.dot(theta.T, X) #soit theta.T * X
+        z = np.dot(theta.T, X) #soit theta.T * X  / pb car theta.T n'est pas une matrice
         g = 1 / (1 + np.exp(-z))
         return g
 

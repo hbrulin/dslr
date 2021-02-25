@@ -14,21 +14,6 @@ def top_least_homogenous(data, courses):
     #print(least_homo)
     #if issue with accuracy, don't use this because of arithmancy
 
-"""
-def init_train(data, relevant_courses):
-
-    #get data
-     #select non homogenous courses?
-    x = data[courses]
-    y = 
-    m = 
-
-    #normalize data
-
-    #launch model computations
-    model = MultiClassifier()
-"""
-
 def main():
     if (len(sys.argv) == 1) :
         print('\33[31m' +"Error: No input file." + '\33[0m')
@@ -37,12 +22,16 @@ def main():
     
     data = DataDescriber.get_data(sys.argv[1])
     courses = Utils.get_courses(data)
-    answer = input('\33[32m' + "Y to train with non homogenous courses : " + '\33[0m')
-    if answer == "Y":
-        courses = top_least_homogenous(data, courses) #not mandatory
-
-    #init_train(data, courses)
-    #train()
+    #answer = input('\33[32m' + "Y to train with non homogenous courses : " + '\33[0m')
+    #if answer == "Y":
+    #   courses = top_least_homogenous(data, courses) #not mandatory + if done i need to remove irrelevant y values
+    X = data[courses].values #check difference without values
+    Y = data["Hogwarts House"].values #idem
+    m = len(X)
+    #normalize data??
+    thetas = MultiClassifier.train(data, X, Y, m)
+    for theta in thetas:
+        print(theta)
 
     
    

@@ -14,15 +14,14 @@ class MultiClassifier:
 
     #gradiant descent
     def get_new_theta(old_theta, X, Y, m):
-        gradiant = calculate_gradiant(old_theta, X, Y, m)
-        theta = old_theta - (learning_rate * gradiant)
+        gradiant = MultiClassifier.calculate_gradiant(old_theta, X, Y, m)
+        theta = old_theta - (MultiClassifier.learning_rate * gradiant)
         return theta
 
-    #input data?
     def train(data, X, Y, m):
         tmp_thetas = [0.0, 0.0, 0.0, 0.0] #better way to do this!
-        for i in data.houses:
-            for _ in range(iterations):
-                new_theta = get_new_theta(thetas[i], X, Y, M)
+        for i, house in enumerate(data.houses):
+            for _ in range(MultiClassifier.iterations):
+                new_theta = MultiClassifier.get_new_theta(tmp_thetas[i], X, Y, m)
                 tmp_thetas[i] = new_theta
         return tmp_thetas
