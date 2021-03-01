@@ -25,7 +25,6 @@ class MultiClassifier:
         def one_vs_all(house): return [1 if y == house else 0 for y in Y] #see more about this
 
         final_thetas = []
-        #X = np.insert(X, 0, 1, axis=1)
         X = (X - X.min()) / (X.max() - X.min())
         theta_nb = len(X[0])
         for i, house in enumerate(data.houses):

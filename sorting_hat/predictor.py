@@ -22,7 +22,6 @@ class Predictor():
     def get_predictions(students, thetas):
         predictions = []
         for student in students:
-            #grades = #get_grades
-            Y = Predictor.predict_house(grades, thetas)
+            Y = Predictor.predict_house(student, thetas)
             predictions.append(Y)
         return predictions

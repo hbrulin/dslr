@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+import csv
 from analysis.describer import DataDescriber
 from utils.utils import Utils
 from sorting_hat.multi_classifier import MultiClassifier
@@ -35,6 +36,11 @@ def main():
     thetas = MultiClassifier.train(data, X, Y, m)
     for theta in thetas:
         print(theta)
+
+    with open("thetas.csv", 'w') as f:
+        writer = csv.writer(f)
+        for theta in thetas:
+            writer.writerow(theta)
 
     
    
