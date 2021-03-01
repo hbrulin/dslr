@@ -8,7 +8,7 @@ class MultiClassifier:
     def calculate_gradiant(old_theta, X, Y, m) :
         theta = 0
         for i in range(0, m):
-            theta += float((Predictor.predict_Y(X[i], old_theta) - Y[i] * X**i)) #not sure
+            theta += float((Predictor.predict_Y(X[i], old_theta) - Y[i]) * X**i) #not sure
         theta = (1/m) * theta #inverse
         return theta
 

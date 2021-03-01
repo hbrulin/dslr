@@ -14,8 +14,8 @@ def courses_scatter(data, courses, fig):
     for pos, course in enumerate(courses):
         for house, color in zip(data.houses, data.colors):
             grades = data[course][data['Hogwarts House'] == house].dropna()
-            #use function
-            grades = (grades.astype(float) - data.min(course)) / (data.max(course) - data.min(course)) #scale between 0 and 1
+            #necessary?
+            grades = (grades.astype(float) - data.min(course)) / (data.max(course) - data.min(course)) #scale between 0 and 1, use scale function
             if len(grades) >= 50:
                 grades = random.sample(list(grades), 50)
             X = [pos] * len(grades) #because x and y must be the same size for scatter
