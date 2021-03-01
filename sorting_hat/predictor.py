@@ -5,8 +5,8 @@ class Predictor():
     #.T : returns transpose of a matrix : échanger les lignes et les colonnes de même indice i 
     #np.exp exponential from Euler nb
     
-    def predict_Y(X, theta):
-        z = np.dot(theta.T, X) #soit theta.T * X  / pb car theta.T n'est pas une matrice
+    def predict_Y(X, thetas):
+        z = np.dot(thetas.T, X) #soit theta.T * X 
         g = 1 / (1 + np.exp(-z))
         return g
 

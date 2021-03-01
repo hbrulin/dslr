@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import sys
 from analysis.describer import DataDescriber
 from utils.utils import Utils
@@ -22,13 +23,15 @@ def main():
     
     data = DataDescriber.get_data(sys.argv[1])
     courses = Utils.get_courses(data)
+
     #answer = input('\33[32m' + "Y to train with non homogenous courses : " + '\33[0m')
     #if answer == "Y":
-    #   courses = top_least_homogenous(data, courses) #not mandatory + if done i need to remove irrelevant y values
-    X = data[courses].values #check difference without values
-    Y = data["Hogwarts House"].values #idem
+    #   courses = top_least_homogenous(data, courses) #not mandatory + if done i need to remove irrelevant y values : del data['Care of Magical Creatures']
+
+    X = np.array(data[courses])
+    X = np.nan_to_num(X, nan=1)
+    Y = np.array(data["Hogwarts House"])
     m = len(X)
-    #normalize data??
     thetas = MultiClassifier.train(data, X, Y, m)
     for theta in thetas:
         print(theta)
