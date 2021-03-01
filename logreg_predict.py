@@ -28,6 +28,8 @@ def main():
             theta = np.array(next(dt)).astype(float)
             thetas.append(theta)
 
+    print(thetas)
+
     predictions = Predictor.get_predictions(X, thetas)
 
     with open("houses.csv", "w") as f:

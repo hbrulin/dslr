@@ -20,3 +20,4 @@
 - do accuracy function to select better courses
 - utiliser init pour avoir les thetas etc... dans l'objet predict, en lui passant le fichier en param d'initialisation
 
+https://github.com/JeremShy/DSLR
