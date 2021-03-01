@@ -23,6 +23,7 @@ def main():
     show_plot = Utils.show_plot(sys.argv)
     
     data = DataDescriber.get_data(sys.argv[1])
+    #del data['Care of Magical Creatures'] #random for now
     courses = Utils.get_courses(data)
 
     #answer = input('\33[32m' + "Y to train with non homogenous courses : " + '\33[0m')

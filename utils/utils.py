@@ -6,7 +6,7 @@ class Utils:
     def get_courses(data):
         courses = []
         for feature in data.columns:
-            if data.is_numeric(feature) and feature != "Index":
+            if data.is_numeric(feature) and feature != "Index" and feature != "Hogwarts House":
                 courses.append(feature)
         return courses
 

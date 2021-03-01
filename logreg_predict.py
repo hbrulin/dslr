@@ -28,14 +28,13 @@ def main():
             theta = np.array(next(dt)).astype(float)
             thetas.append(theta)
 
-    print(thetas)
     predictions = Predictor.get_predictions(X, thetas)
 
     with open("houses.csv", "w") as f:
         writer = csv.writer(f)
         writer.writerow(["Index", "Hogwarts House"])
         for i, house_nb in enumerate(predictions):
-            write.writerow([i, data['Hogwarts House'][house_nb]])
+            writer.writerow([i, data['Hogwarts House'][house_nb]])
 
 if __name__ == "__main__":
     main()
