@@ -34,7 +34,7 @@ def main():
         writer = csv.writer(f)
         writer.writerow(["Index", "Hogwarts House"])
         for i, house_nb in enumerate(predictions):
-            writer.writerow([i, data['Hogwarts House'][house_nb]])
+            writer.writerow([i, data.houses[house_nb]])
 
 if __name__ == "__main__":
     main()
