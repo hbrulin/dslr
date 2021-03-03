@@ -16,9 +16,6 @@ class Utils:
                 courses.append(feature)
         return courses
 
-    def show_plot(args):
-        return True if (len(args) > 2 and args[2] == "--plot") else False
-
     ###sorting hat
     def normalize(data, courses, action):
         X = []

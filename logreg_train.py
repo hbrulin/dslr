@@ -36,7 +36,6 @@ def main():
     if (len(sys.argv) == 1) :
         print('\33[31m' +"Error: No input file." + '\33[0m')
         sys.exit()
-    show_plot = Utils.show_plot(sys.argv)
     
     ##get necessary data
     data = DataDescriber.get_data(sys.argv[1])
@@ -52,7 +51,6 @@ def main():
     predictions = Predictor.get_predictions(X, thetas)
     score = accuracy_score(Y, predictions) * 100
     print('\33[32m' + "Accuracy score is: %f %%" %score + '\33[0m')
-    
 
    
 if __name__ == "__main__":
