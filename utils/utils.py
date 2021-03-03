@@ -30,7 +30,7 @@ class Utils:
                 #print(row[course])
                 try:
                     normalized.append(
-                        (row[course] - data.min(course)) / (data.max(course) - data.min(course))
+                        (row[course] - data.mean(course)) / data.std(course) #this way to normalize gets higher accuracy than min-max
                     )
                 except:
                     normalized.append(0) #pourquoi ça ça ne vire pas les nan?
@@ -38,7 +38,6 @@ class Utils:
             if action == Action.TRAINING:
                 Y.append(data.houses.index(row[1])) #index nb of house
         X = np.nan_to_num(X, nan=1)
-        #X = np.insert(X, 0, 1, axis=1) #see if useful
         return [X, Y]
 
     ###Visualisation

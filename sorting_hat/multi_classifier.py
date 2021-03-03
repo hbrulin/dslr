@@ -17,6 +17,7 @@ class MultiClassifier:
         tmp_thetas -= gradiant
         return tmp_thetas
 
+    #so that I know if my predictions concern the house on which I want the theta
     def one_vs_all(Y, house):
         y_ova = []
         for y in Y:
@@ -31,7 +32,6 @@ class MultiClassifier:
         theta_nb = len(X[0])
         for i, house in enumerate(data.houses):
             y_ova = MultiClassifier.one_vs_all(Y, i)
-            print(y_ova)
             tmp_thetas = np.zeros(theta_nb)
             for _ in range(MultiClassifier.iterations):
                 tmp_thetas = MultiClassifier.gradiant_descent(tmp_thetas, X, y_ova, m)
