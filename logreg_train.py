@@ -24,7 +24,7 @@ def main():
 
     ##get necessary data
     data = DataDescriber.get_data(sys.argv[1])
-    courses = Utils.get_courses(data)
+    courses = data.get_courses()
     X, Y = Utils.normalize(data, courses, Action.TRAINING)
     m = len(X)
 

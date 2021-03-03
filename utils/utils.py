@@ -8,14 +8,6 @@ class Action(Enum):
     PREDICTION = auto()
 
 class Utils:
-    ###general
-    def get_courses(data):
-        courses = []
-        for feature in data.columns:
-            if data.is_numeric(feature) and feature != "Index" and feature != "Hogwarts House":
-                courses.append(feature)
-        return courses
-
     ###sorting hat
     def normalize(data, courses, action):
         X = []
@@ -56,7 +48,7 @@ class Utils:
             else:
                 print('\33[94m' + course, " | " + '\33[0m', end='')
 
-        courseA = VUtils.ask_for_course(courses, "First")
-        courseB = VUtils.ask_for_course(courses, "Second")
+        courseA = Utils.ask_for_course(courses, "First")
+        courseB = Utils.ask_for_course(courses, "Second")
 
         return [courseA, courseB]

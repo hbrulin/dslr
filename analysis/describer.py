@@ -29,6 +29,12 @@ class DataDescriber(pd.DataFrame):
     def is_numeric(self, feature: str):
         return np.issubdtype(self[feature].dtype, np.number)
 
+    def get_courses(self):
+        courses = []
+        for feature in self.columns:
+            if self.is_numeric(feature) and feature != "Index" and feature != "Hogwarts House":
+                courses.append(feature)
+        return courses
     
     ###description
 

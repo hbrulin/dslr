@@ -10,14 +10,12 @@ class Predictor():
         g = 1 / (1 + np.exp(-z))
         return g
 
-    def predict_house(grades, thetas) :
+    def predict_house(grades, thetas) : #one group of thetas per house
         Ys = [] #all probabilities
         for theta in thetas:
             Y = Predictor.predict_Y(grades, theta)
             Ys.append(Y)
         maxY = max(Ys) #select highest probability
-        #print(Ys)
-        #print(maxY)
         return Ys.index(maxY) #return its index i.e index of the house
 
 

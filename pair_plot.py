@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import sys
 from analysis.describer import DataDescriber
-from utils.utils import Utils
 from histogram import course_sub
 from scatter_plot import courses_compare
 
@@ -28,7 +27,7 @@ def main():
         print('\33[31m' +"Error: No input file." + '\33[0m')
         sys.exit()
     data = DataDescriber.get_data(sys.argv[1])
-    courses = Utils.get_courses(data)
+    courses = data.get_courses()
     pair_plot(data, courses)
 
 if __name__ == "__main__":
