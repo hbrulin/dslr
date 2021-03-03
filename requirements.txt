@@ -1,0 +1,6 @@
+matplotlib
+numpy
+pandas
+sklearn
+
+#Usage: pip3 install -r requirements.txt

@@ -7,6 +7,8 @@ class DataDescriber(pd.DataFrame):
     houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff']
     colors = ['red', 'green', 'blue', 'yellow']
 
+    ###general 
+
     def get_data(filename: str):
         try:
             data = pd.read_csv(filename)
@@ -27,19 +29,22 @@ class DataDescriber(pd.DataFrame):
     def is_numeric(self, feature: str):
         return np.issubdtype(self[feature].dtype, np.number)
 
-    #dropna removes missing value
+    
+    ###description
+
     def count(self, feature: str):
-        return len(self[feature].dropna())
+        return len(self[feature].dropna()) #dropna removes missing value
 
     def mean(self, feature: str) -> float:
         return sum(self[feature].dropna()) / self.count(feature)
     
-    #The standard deviation is a statistic that measures the dispersion of a dataset relative to its mean.
-    #The standard deviation is calculated as the square root of variance by determining each data point's deviation relative to the mean.
-    #If the data points are further from the mean, there is a higher deviation within the data set; thus, the more spread out the data, the higher the standard deviation.
-    #A volatile df has a high standard deviation, while the deviation of a homogenous df is usually rather low
-    #As a downside, the standard deviation calculates all uncertainty as risk/negative, even when deviation is caused by something good (ex: above-average returns).
-    #std = sqrt()
+    """
+    The standard deviation is a statistic that measures the dispersion of a dataset relative to its mean.
+    The standard deviation is calculated as the square root of variance by determining each data point's deviation relative to the mean.
+    If the data points are further from the mean, there is a higher deviation within the data set; thus, the more spread out the data, the higher the standard deviation.
+    A volatile df has a high standard deviation, while the deviation of a homogenous df is usually rather low
+    As a downside, the standard deviation calculates all uncertainty as risk/negative, even when deviation is caused by something good (ex: above-average returns).
+    """
     def std(self, feature: str) -> float:
         variance = sum((self[feature].dropna() - self.mean(feature))**2) / (self.count(feature) - 1)
         return np.sqrt(variance)

@@ -8,7 +8,7 @@ class Action(Enum):
     PREDICTION = auto()
 
 class Utils:
-    #general
+    ###general
     def get_courses(data):
         courses = []
         for feature in data.columns:
@@ -19,7 +19,7 @@ class Utils:
     def show_plot(args):
         return True if (len(args) > 2 and args[2] == "--plot") else False
 
-    #sorting hat
+    ###sorting hat
     def normalize(data, courses, action):
         X = []
         Y = []
@@ -33,7 +33,7 @@ class Utils:
                         (row[course] - data.min(course)) / (data.max(course) - data.min(course))
                     )
                 except:
-                    normalized.append(0)
+                    normalized.append(0) #pourquoi ça ça ne vire pas les nan?
             X.append(normalized)
             if action == Action.TRAINING:
                 Y.append(data.houses.index(row[1])) #index nb of house
@@ -41,7 +41,7 @@ class Utils:
         #X = np.insert(X, 0, 1, axis=1) #see if useful
         return [X, Y]
 
-    #Visualisation
+    ###Visualisation
     def ask_for_course(courses, nb):
         check_course = False
         while check_course == False :

@@ -18,6 +18,7 @@ https://openclassrooms.com/fr/courses/4444646-entrainez-un-modele-predictif-line
 Bonuses:
 #compute most homogenous
 #overview scatter_plot with normalization
+#check accuracy
 
 
 
