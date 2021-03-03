@@ -3,9 +3,10 @@ import numpy as np
 import sys
 import csv
 from analysis.describer import DataDescriber
-from utils.utils import Utils
+from utils.utils import Utils, Action
 from sorting_hat.multi_classifier import MultiClassifier
 from histogram import get_houses_total_diff
+from sorting_hat.predictor import Predictor
 
 def top_least_homogenous(data, courses):
     diff_arr = []
@@ -23,27 +24,27 @@ def main():
     show_plot = Utils.show_plot(sys.argv)
     
     data = DataDescriber.get_data(sys.argv[1])
-    #del data['Care of Magical Creatures'] #random for now
-    courses = Utils.get_courses(data)
 
     #answer = input('\33[32m' + "Y to train with non homogenous courses : " + '\33[0m')
     #if answer == "Y":
     #   courses = top_least_homogenous(data, courses) #not mandatory + if done i need to remove irrelevant y values : del data['Care of Magical Creatures']
-
-    X = np.array(data[courses])
-    X = np.nan_to_num(X, nan=1)
-    Y = np.array(data["Hogwarts House"])
+    courses = Utils.get_courses(data)
+    X, Y = Utils.normalize(data, courses, Action.TRAINING)
     m = len(X)
+
     thetas = MultiClassifier.train(data, X, Y, m)
     for theta in thetas:
         print(theta)
+
+    #check accuracy by predicting dataset_train and comparing with existing
+    predictions = Predictor.get_predictions(X, thetas)
+    print(predictions)
 
     with open("thetas.csv", 'w') as f:
         writer = csv.writer(f)
         for theta in thetas:
             writer.writerow(theta)
 
-    
    
 if __name__ == "__main__":
     main()

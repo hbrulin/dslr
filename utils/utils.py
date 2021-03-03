@@ -1,5 +1,11 @@
 import pandas as pd
 import sys
+import numpy as np
+from enum import Enum, auto
+
+class Action(Enum):
+    TRAINING = auto()
+    PREDICTION = auto()
 
 class Utils:
     #general
@@ -13,22 +19,27 @@ class Utils:
     def show_plot(args):
         return True if (len(args) > 2 and args[2] == "--plot") else False
 
-    def get_max(data) -> float:
-        tmp = 0
-        for nb in data:
-            if nb > tmp:
-                tmp = nb
-        return tmp
-
-    def scale(to_scale) :
-        return (to_scale.astype(float) - Utils.get_min(to_scale)) / (Utils.get_max(to_scale) - Utils.get_min(to_scale))
-        
-    def get_min(data) -> float:
-        tmp = 0
-        for nb in data:
-            if nb < tmp:
-                tmp = nb
-        return tmp
+    #sorting hat
+    def normalize(data, courses, action):
+        X = []
+        Y = []
+        for i, row in data.iterrows():
+            normalized = []
+            #print(row[courses].values)
+            for course in courses:
+                #print(row[course])
+                try:
+                    normalized.append(
+                        (row[course] - data.min(course)) / (data.max(course) - data.min(course))
+                    )
+                except:
+                    normalized.append(0)
+            X.append(normalized)
+            if action == Action.TRAINING:
+                Y.append(data.houses.index(row[1])) #index nb of house
+        X = np.nan_to_num(X, nan=1)
+        #X = np.insert(X, 0, 1, axis=1) #see if useful
+        return [X, Y]
 
     #Visualisation
     def ask_for_course(courses, nb):

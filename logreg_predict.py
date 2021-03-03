@@ -3,7 +3,7 @@ import numpy as np
 import sys
 import csv
 from analysis.describer import DataDescriber
-from utils.utils import Utils
+from utils.utils import Utils, Action
 from sorting_hat.predictor import Predictor
 
 
@@ -13,12 +13,12 @@ def main():
         sys.exit()
     show_plot = Utils.show_plot(sys.argv)
     
-    #get grades
+    #"Herbology", "Defense Against the Dark Arts",
+    # "Divination", "Ancient Runes", "Flying", "Muggle Studies"
+
     data = DataDescriber.get_data(sys.argv[1])
     courses = Utils.get_courses(data)
-    X = np.array(data[courses])
-    X = np.nan_to_num(X, nan=1)
-    X = (X - X.min()) / (X.max() - X.min())
+    X, Y = Utils.normalize(data, courses, Action.PREDICTION)
 
     #get thetas
     with open("thetas.csv") as f:
@@ -27,8 +27,6 @@ def main():
         for _ in range(4):
             theta = np.array(next(dt)).astype(float)
             thetas.append(theta)
-
-    print(thetas)
 
     predictions = Predictor.get_predictions(X, thetas)
 

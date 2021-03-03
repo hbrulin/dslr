@@ -16,6 +16,8 @@ class Predictor():
             Y = Predictor.predict_Y(grades, theta)
             Ys.append(Y)
         maxY = max(Ys) #select highest probability
+        #print(Ys)
+        #print(maxY)
         return Ys.index(maxY) #return its index i.e index of the house
 
 
@@ -23,5 +25,6 @@ class Predictor():
         predictions = []
         for student in students:
             Y = Predictor.predict_house(student, thetas)
+            #print(Y)
             predictions.append(Y)
         return predictions
