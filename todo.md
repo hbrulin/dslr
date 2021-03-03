@@ -3,6 +3,7 @@
 #general
 - requirements.txt - test it
 - check potential bugs of arg options
+- utiliser self dans les classes pour les attributs
 
 #describe
 - understand percentiles algo better
