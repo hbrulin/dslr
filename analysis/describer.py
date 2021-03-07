@@ -8,7 +8,6 @@ class DataDescriber(pd.DataFrame):
     colors = ['red', 'green', 'blue', 'yellow']
 
     ###general 
-
     def get_data(filename: str):
         try:
             data = pd.read_csv(filename)
@@ -37,7 +36,6 @@ class DataDescriber(pd.DataFrame):
         return courses
     
     ###description
-
     def count(self, feature: str):
         return len(self[feature].dropna()) #dropna removes missing value
 
@@ -85,3 +83,4 @@ class DataDescriber(pd.DataFrame):
         d0 = arr[int(f)] * (c - rank)
         d1 = arr[int(c)] * (rank - f)
         return d0 + d1
+            
