@@ -6,12 +6,15 @@ from utils.utils import Utils, Action
 from sorting_hat.predictor import Predictor
 
 def get_thetas():
-    with open("thetas.csv") as f:
-        dt = csv.reader(f)
-        thetas = []
-        for _ in range(4):
-            theta = np.array(next(dt)).astype(float)
-            thetas.append(theta)
+    try:
+        with open("thetas.csv") as f:
+            dt = csv.reader(f)
+            thetas = []
+            for _ in range(4):
+                theta = np.array(next(dt)).astype(float)
+                thetas.append(theta)
+    except:
+        exit("No thetas.csv. Run logreg_train.py")
     return thetas
 
 def write_predictions(data, predictions):

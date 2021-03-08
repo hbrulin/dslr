@@ -17,12 +17,9 @@ class Utils:
             #print(row[courses].values)
             for course in courses:
                 #print(row[course])
-                try:
-                    normalized.append(
-                        (row[course] - data.mean(course)) / data.std(course) #this way to normalize gets higher accuracy than min-max
-                    )
-                except:
-                    normalized.append(0) #pourquoi ça ça ne vire pas les nan?
+                normalized.append(
+                    (row[course] - data.mean(course)) / data.std(course) #this way to normalize gets higher accuracy than min-max
+                )
             X.append(normalized)
             if action == Action.TRAINING:
                 Y.append(data.houses.index(row[1])) #index nb of house
