@@ -72,15 +72,29 @@ class DataDescriber(pd.DataFrame):
         arr = sorted(self[feature].dropna())
         #calculate what rank is at percentile
         rank = (len(arr) - 1) * percent / 100
+        print("rank: ", rank)
 
         #get floor : The floor of the scalar rank is the largest integer f, such that f <= x
         f = np.floor(rank)
+        print("f: ", f)
+
         #get ceil : The ceil of the scalar x is the smallest integer i, such that i >= x.
         c = np.ceil(rank)
+        print("c: ", c)
+
         #if same number, the rank corresponds to an existing value
         if f == c:
             return arr[int(rank)]
+
+        print("arr[int(f)] :", arr[int(f)])    
+        print("arr[int(c)] :", arr[int(c)])   
+        print("c - rank :", c - rank)    
+        print("rank - f :", rank - f)    
         d0 = arr[int(f)] * (c - rank)
         d1 = arr[int(c)] * (rank - f)
+        print("d0 :",d0)
+        print("d1 :", d1)
+        print("total :", d0 + d1)
+        
         return d0 + d1
             
